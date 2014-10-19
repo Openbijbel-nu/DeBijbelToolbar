@@ -78,6 +78,48 @@
 		});
  	}
 
+ 	/**
+ 	 * Split columns
+ 	 */
+ 	function splitColumns(extraColumnCount) {
+ 		$(".tr-1").after(
+ 			"<div class='openbijbelvertalingtekst'>"
+ 				+ '<div class="openbijbelkolomtitel openbijbelvertaling">[[|]]</div>'
+ 			+ '</div>'
+ 			+ '<style class="reftaggerkolomversiestyle">.rtContainer {position:fixed !important;right: 30px !important; top: 240px !important; max-width: 30% !important; height: 800px !important; padding: 10px !important;}</style>'
+ 		);
+
+		$('.openbijbelvertaling').text(openBijbelToolBar.find(".openbijbelvertalingnaam").text());
+
+		$(".openbijbelvertalingtekst").css({
+			"float": "right",
+			"width": "30%",
+			"height": "100%",
+			"padding": "10px"
+		});
+
+		// kopje
+		$(".openbijbelkolomtitel").css({
+			"background-color": "#412972",
+			"color": "white",
+			"padding": "10px",
+			"right": "0px",
+			"margin-top": "2px",
+			"width": "100px"
+		});
+
+		// breedte van translation - 30 voor bij 2 kolommen en 65 bij 1
+		if (extraColumnCount == 1) {
+			$(".translation").css({
+				"width": "65%"
+			});
+		} else if (extraColumnCount == 2) {
+			$(".translation").css({
+				"width": "30%"
+			});
+		}
+ 	}
+
  	// This variable will be used to attach a jQuery reference to the Open Bijbel top bar. 
  	// So we can use it in multiple functions.
  	var openBijbelToolBar = undefined;
@@ -105,6 +147,20 @@
 
  		openBijbelToolBar.append(toolbarContent);
 
+		// amount of translations
+		var cntTranslations = $('.translation').length;
+
+		if (cntTranslations < 3) {
+			openBijbelToolBar.find(".openbijbelknoppenarea").append(
+				'&nbsp; | &nbsp;'
+				+ '<span class="openbijbelknoptoelichting">Weergave: </span>'
+				+ '<span class="openbijbelknop weergavekeus kiesreftagkolom">Extra Kolom</span>'
+				+ '<span class="openbijbelknop weergavekeus kiesreftagtooltip">Tooltip</span>'
+			);
+		}
+
+		openBijbelToolBar.find(".openbijbelknoppenarea").append(' <span class="openbijbelknop kiesReset">(Reset)</span> ');
+
 
  		// set styling
  		openBijbelToolBar.css({
@@ -128,8 +184,6 @@
 			"float":"right"
 		});
 
-//		openBijbelToolBar.find('.vertalingkeus.NIV').css("text-decoration","underline");
-
 		openBijbelToolBar.find(".openbijbelknop").css({
 			"color": "#A3A9BC",
 			"cursor":"pointer"
@@ -137,6 +191,13 @@
 
 		openBijbelToolBar.find(".openbijbelknoptoelichting").css({
 			"font-style": "italic"
+		});
+
+		openBijbelToolBar.find(".kiesreftagtooltip").hide();
+
+		openBijbelToolBar.find(".kiesReset").css({
+			"color": "#646E8F",
+			"cursor":"move"
 		});
  	}
 
@@ -152,6 +213,37 @@
 
  			chooseTranslation(translation);
  		});
+
+ 		openBijbelToolBar.on('click', '.kiesReset', function() {
+ 			showReferences();
+
+ 			// choose default translation
+ 			chooseTranslation("NIV");
+		});
+
+ 		openBijbelToolBar.on('click', '.kiesreftagkolom', function() {
+ 			splitColumns($('.translation').length);
+
+			$(this).hide();
+			openBijbelToolBar.find('.kiesreftagtooltip').show();
+		});
+
+ 		openBijbelToolBar.on('click', '.kiesreftagtooltip', function() {
+ 			// doet niks
+			$('.openbijbelvertalingtekst').remove();
+			$('.reftaggerkolomversiestyle').remove();
+
+			// breedte teruggeven op basis van aantal aanwezige kolommen
+
+			if (aantalKolommen > 1) {
+			     $(".translation").css("width","45%");
+			} else {
+			     $(".translation").css("width","90%");	
+			}
+
+			$(this).hide();
+			openBijbelToolBar.find('.kiesreftagkolom').show();
+		});
  	}
 
  	/**

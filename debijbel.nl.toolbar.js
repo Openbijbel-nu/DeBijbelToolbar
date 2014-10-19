@@ -47,7 +47,7 @@
 
  	 		return;
  	 	}
- 	 	
+
  	 	require('//api.reftagger.com/v2/RefTagger.js', 'openbijbelreftaggerscript', function () {
  	 		refTaggerLoaded = true;
  	 		
@@ -81,6 +81,8 @@
 			openBijbelToolBar.find(".openbijbelvertaling").html("[[|]] &nbsp; " + translation + " ");
 			openBijbelToolBar.find('.vertalingkeus').css("text-decoration","none");
 			openBijbelToolBar.find('.vertalingkeus[data-translation="' + translation + '"]').css("text-decoration","underline");
+		
+			$('.openbijbelvertaling').text(openBijbelToolBar.find(".openbijbelvertaling").text());
 		});
  	}
 

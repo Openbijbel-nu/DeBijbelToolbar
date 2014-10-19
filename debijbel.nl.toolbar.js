@@ -122,7 +122,7 @@
 			"padding": "10px",
 			"right": "0px",
 			"margin-top": "2px",
-			"width": "100px"
+			"width": "120px"
 		});
 
 		// breedte van translation - 30 voor bij 2 kolommen en 65 bij 1

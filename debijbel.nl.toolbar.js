@@ -35,11 +35,25 @@
 
  	 }
 
+ 	 var refTaggerLoaded = false;
+
  	 /**
  	  * Loads the refTagger script with a protocol independant URL
  	  */
  	 function loadRefTagger(onLoadFunction) {
- 	 	require('//api.reftagger.com/v2/RefTagger.js', 'openbijbelreftaggerscript', onLoadFunction);
+ 	 	if (refTaggerLoaded) {
+ 	 		if (typeof(onLoadFunction) == 'function')
+ 	 			onLoadFunction();
+
+ 	 		return;
+ 	 	}
+ 	 	
+ 	 	require('//api.reftagger.com/v2/RefTagger.js', 'openbijbelreftaggerscript', function () {
+ 	 		refTaggerLoaded = true;
+ 	 		
+ 	 		if (typeof(onLoadFunction) == 'function')
+ 	 			onLoadFunction();
+ 	 	});
  	 }
 
  	 /**
@@ -51,12 +65,13 @@
  		}
 
  		// set the already existing global variable with new options (so no var before this variable)
- 		refTagger = {
-			settings: {
-				bibleReader: "bible.faithlife",
-				bibleVersion: translation		
-			}
-		};
+ 		if (!refTaggerLoaded)
+	 		refTagger = {
+				settings: {
+					bibleReader: "bible.faithlife",
+					bibleVersion: translation		
+				}
+			};
 
 		loadRefTagger(function () {
 			$(".rtBibleRef").each(function(){

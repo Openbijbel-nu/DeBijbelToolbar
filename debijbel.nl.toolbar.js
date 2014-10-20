@@ -155,10 +155,10 @@
 			'<div class="openbijbelvertalingnaam openbijbelvertaling">[[|]] &nbsp; NIV</div>'
 			+ '<div class="openbijbelknoppenarea">'
 				+ '<span class="openbijbelknoptoelichting">Andere vertaling: </span>'
-				+ '<span class="openbijbelknop vertalingkeus NIV" data-translation="NIV">NIV</span> &nbsp;'
-				+ '<span class="openbijbelknop vertalingkeus ESV" data-translation="ESV">ESV</span> &nbsp;'
-				+ '<span class="openbijbelknop vertalingkeus KJV" data-translation="KJV">KJV</span> &nbsp;'
-				+ '<span class="openbijbelknop vertalingkeus NKJV" data-translation="NKJV">NKJV</span> &nbsp;'
+				+ '<span class="openbijbelknop vertalingkeus NIV" data-translation="NIV">NIV</span> '
+				+ '<span class="openbijbelknop vertalingkeus ESV" data-translation="ESV">ESV</span> '
+				+ '<span class="openbijbelknop vertalingkeus KJV" data-translation="KJV">KJV</span> '
+				+ '<span class="openbijbelknop vertalingkeus NKJV" data-translation="NKJV">NKJV</span> '
 				+ '<span class="openbijbelknop vertalingkeus NLT" data-translation="NLT">NLT</span>'
 			+ '</div>';
 

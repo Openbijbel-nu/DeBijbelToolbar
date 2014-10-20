@@ -188,9 +188,6 @@
 			"padding":"10px",
 			"color": "white",
 			"margin-bottom":"5px",
-			"border-width": "0px 0px 1px",
-			"border-style": "none none solid",
-			"border-color": "-moz-use-text-color -moz-use-text-color #133783",
 			"-webkit-box-shadow": "0 2px 2px -2px rgba(0, 0, 0, .52)",
 			"box-shadow": "0px 2px 2px -2px rgba(0, 0, 0, 0.52)",
 		});

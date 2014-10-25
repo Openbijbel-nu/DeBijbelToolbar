@@ -252,9 +252,11 @@
 			$('.openbijbelvertalingtekst').remove();
 			$('.reftaggerkolomversiestyle').remove();
 
-			// breedte teruggeven op basis van aantal aanwezige kolommen
+			// breedte teruggeven op basis van aantal open vertalingen van debijbel 
 
-			if (aantalKolommen > 1) {
+                        var columnCount = $('.translation').length;
+
+			if (columnCount > 1) {
 			     $(".translation").css("width","45%");
 			} else {
 			     $(".translation").css("width","90%");	
